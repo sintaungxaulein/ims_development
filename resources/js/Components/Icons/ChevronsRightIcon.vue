@@ -1,0 +1,33 @@
+<template>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12.207"
+    height="9.414"
+    viewBox="0 0 12.207 9.414"
+  >
+    <g id="ChevronDowns-right" transform="translate(0.707 0.707)">
+      <path
+        id="Path"
+        d="M0,8,4,4,0,0"
+        transform="translate(7)"
+        fill="none"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        stroke-width="1"
+      />
+      <path
+        id="Path-2"
+        data-name="Path"
+        d="M0,8,4,4,0,0"
+        fill="none"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-miterlimit="10"
+        stroke-width="1"
+      />
+    </g>
+  </svg>
+</template>
