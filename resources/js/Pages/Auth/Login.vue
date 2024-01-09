@@ -44,7 +44,7 @@ const submit = () => {
         </div>
 
         <form @submit.prevent="submit">
-            <div>
+            <div class="mt-4">
                 <InputLabel for="email" value="Email" />
 
                 <TextInput

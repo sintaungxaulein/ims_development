@@ -16,7 +16,7 @@
   >
     <div class="flex flex-col gap-y-4 justify-start items-center h-40">
       <img
-        src="/img/main-logo.png"
+        src="/img/logo/erimgt.jpg"
         class="transition-all duration-1000"
         :class="{
           'w-full': !sideNavExpanded,
@@ -39,7 +39,7 @@
     </div>
     <div class="flex-1 mt-4 flex flex-col gap-y-4">
       <SideNavItem
-      :href="route('dashboard')" 
+      :href="route('dashboard')"
       :active="$page.component === 'Dashboard'"
       :side-nav-expanded="sideNavExpanded">
         <template v-slot:icon>
