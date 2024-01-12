@@ -1,5 +1,5 @@
 <template>
-  <NavLink :href="href" class="flex items-center">
+  <NavLink :href="href" class="flex items-center ml-2">
     <slot name="icon"></slot>
 
     <span
