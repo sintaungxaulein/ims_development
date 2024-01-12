@@ -51,6 +51,39 @@
         </template>
         <template v-slot:name> Dashboard</template>
       </SideNavItem>
+      
+      <SideNavGroup
+        :side-nav-expanded="sideNavExpanded"
+        :active="
+          [
+            'Dashboard/Item/Index',
+          ].includes($page.component)
+        "
+      >
+        <template v-slot:icon>
+          <ReportIcon
+            class="shrink-0"
+            @click="clickOnIcon"
+            @dblclick="toggleSideNav"
+          />
+        </template>
+        <template v-slot:name> Item Management </template>
+        <template v-slot:navLinks>
+          <NavLink
+            :href="route('items.index')"
+            :active="$page.component === 'Dashboard/Agent/Index'"
+          >
+            Item List</NavLink
+          >
+          <NavLink
+            :href="route('items.create')"
+            :active="$page.url == '/items/create'"
+          >
+            Create New Item
+          </NavLink>
+        </template>
+      </SideNavGroup>
+
     </div>
   </div>
   <LogoutDialog v-if="showLogoutDialog" @close="toggleLogoutDialog" />
