@@ -1,15 +1,15 @@
 <template>
-    <Head title="Item List" />
-    <div class="flex items-center gap-x-4">
-      <Breadcrumb title="Item Management" />
+    <Head title="Supplier List" />
+    <div class="flex suppliers-center gap-x-4">
+      <Breadcrumb title="Supplier Management" />
     </div>
     <List
       class="mt-4"
       :create-link="createLink"
       v-model:perPage="perPage"
-      :links="items.meta.links"
-      :current-page="items.meta.current_page"
-      :show-count="items.data.length"
+      :links="suppliers.meta.links"
+      :current-page="suppliers.meta.current_page"
+      :show-count="suppliers.data.length"
     >
       <div class="py-2 border-y border-gray-400 w-max flex gap-x-4">
         <span
@@ -21,9 +21,9 @@
         </span>
       </div>
       <Link
-        v-for="Item in items.data"
-        :key="Item.item_code"
-        :href="route('items.edit', Item.id)"
+        v-for="Supplier in suppliers.data"
+        :key="Supplier.name"
+        :href="route('suppliers.edit', Supplier.id)"
         class="
           py-2
           w-max
@@ -36,10 +36,10 @@
       >
         <span
           v-for="(title, index) in titles"
-          :key="`${Item.item_code}-title-${index}`"
+          :key="`${Supplier.name}-title-${index}`"
           :class="title.className"
         >
-          {{ Item[title.key] }}
+          {{ Supplier[title.key] }}
         </span>
       </Link>
     </List>
@@ -50,10 +50,10 @@
   import List from "@/Layouts/List.vue";
   import { ref } from "@vue/reactivity";
   import { watch } from "@vue/runtime-core";
-  import useItem from "../../../composables/useItem";
+  import useSupplier from "../../../composables/useSupplier";
 
   const props = defineProps({
-    items: {
+    suppliers: {
       type: Object,
       required: true,
     },
@@ -63,20 +63,19 @@
   });
 
   // const createLink = {
-  //   title: "Add New Item",
-  //   link: route("items.create"),
+  //   title: "Add New Supplier",
+  //   link: route("suppliers.create"),
   // };
 
-  const perPage = ref(props.items.meta.per_page);
+  const perPage = ref(props.suppliers.meta.per_page);
 
-  const { getitems } = useItem(perPage);
+  const { getsuppliers } = useSupplier(perPage);
 
-  watch(perPage, (value) => typeof value == "number" && value > 0 && getitems());
+  watch(perPage, (value) => typeof value == "number" && value > 0 && getsuppliers());
 
   const titles = [
-    { className: "w-48", key: "id", title: "Item Id" },
-    { className: "w-60", key: "item_code", title: "Code" },
-    { className: "w-60", key: "name", title: "Item Name" },
-    { className: "w-60", key: "unit", title: "Unit" },
+    { className: "w-80", key: "id", title: "Supplier Id" },
+    { className: "w-80", key: "name", title: "Supplier Name" },
+    { className: "w-80", key: "description", title: "Description" },
   ];
   </script>

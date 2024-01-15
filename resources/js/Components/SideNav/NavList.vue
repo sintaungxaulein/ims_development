@@ -51,7 +51,7 @@
         </template>
         <template v-slot:name> Dashboard</template>
       </SideNavItem>
-      
+
       <SideNavGroup
         :side-nav-expanded="sideNavExpanded"
         :active="
@@ -84,6 +84,37 @@
         </template>
       </SideNavGroup>
 
+      <SideNavGroup
+        :side-nav-expanded="sideNavExpanded"
+        :active="
+          [
+            'Dashboard/Supplier/Index',
+          ].includes($page.component)
+        "
+      >
+        <template v-slot:icon>
+          <ReportIcon
+            class="shrink-0"
+            @click="clickOnIcon"
+            @dblclick="toggleSideNav"
+          />
+        </template>
+        <template v-slot:name> Supplier Management </template>
+        <template v-slot:navLinks>
+          <NavLink
+            :href="route('suppliers.index')"
+            :active="$page.component === 'Dashboard/Agent/Index'"
+          >
+            Supplier List</NavLink
+          >
+          <NavLink
+            :href="route('suppliers.create')"
+            :active="$page.url == '/suppliers/create'"
+          >
+            Create New Supplier
+          </NavLink>
+        </template>
+      </SideNavGroup>
     </div>
   </div>
   <LogoutDialog v-if="showLogoutDialog" @close="toggleLogoutDialog" />
