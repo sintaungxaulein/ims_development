@@ -8,6 +8,12 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class UnitCollection extends ResourceCollection
 {
+     /**
+     * The "data" wrapper that should be applied.
+     *
+     * @var string|null
+     */
+    public static $wrap = null;
     /**
      * Transform the resource collection into an array.
      *
@@ -15,12 +21,12 @@ class UnitCollection extends ResourceCollection
      */
     public function toArray(Request $request)
     {
-        return $this->collection->map(function (Unit $unit) {
+        return $this->collection->transform(function ($unit) {
             return [
                 'id'      => $unit->id,
                 'name'    => $unit->name,
                 'description'   => $unit->description,
             ];
-        })->all();
+        });
     }
 }

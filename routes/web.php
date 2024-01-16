@@ -34,9 +34,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('items', ItemController::class);
-});
-
-Route::middleware('auth')->group(function () {
     Route::resource('units', UnitController::class);
 });
+
 require __DIR__.'/auth.php';

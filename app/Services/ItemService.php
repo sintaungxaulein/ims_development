@@ -28,29 +28,26 @@ class ItemService
             ->withQueryString();
     }
 
-    // public function storeUser($request)
-    // {
-    //     try {
-    //         DB::beginTransaction();
-    //         $user = $this->createUser($request);
-    //         DB::commit();
-    //     } catch (\Exception $exception) {
-    //         DB::rollBack();
-    //     }
-    // }
+    public function storeItem($request)
+    {
+        try {
+            DB::beginTransaction();
+            $item = $this->createItem($request);
+            DB::commit();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+        }
+    }
 
-    // private function createUser($request): User
-    // {
-    //     $user = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email ?? null,
-    //         'password' => Hash::make($request->password),
-    //     ]);
-    //     $role = Role::findById($request->role_id);
-    //     $roleName = $role->name;
-    //     $user->assignRole($roleName);
-    //     return $user;
-    // }
+    private function createItem($request): Item
+    {
+        $item = Item::create([
+            'item_code' => $request->item_code ?? null,
+            'name' => $request->name ?? null,
+            'unit_id' => 1,
+        ]);
+        return $item;
+    }
 
     // public function updateUser(Request $request,User $user): User
     // {

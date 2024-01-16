@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreItemRequest;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use App\Services\ItemService;
 use Inertia\Inertia;
 use App\Http\Resources\ItemCollection;
+use App\Http\Resources\UnitCollection;
+use App\Models\Unit;
 
 class ItemController extends Controller
 {
@@ -31,15 +34,19 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $units = Unit::orderBy('name')->get();
+        return Inertia::render('Dashboard/Item/AddEdit', [
+            'units' => new UnitCollection($units),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreItemRequest $request)
     {
-        //
+        $this->service->storeItem($request);
+        return redirect()->route('items.index');
     }
 
     /**
