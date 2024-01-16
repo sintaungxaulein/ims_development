@@ -51,7 +51,7 @@
         </template>
         <template v-slot:name> Dashboard</template>
       </SideNavItem>
-      
+
       <SideNavGroup
         :side-nav-expanded="sideNavExpanded"
         :active="
@@ -80,6 +80,38 @@
             :active="$page.url == '/items/create'"
           >
             Create New Item
+          </NavLink>
+        </template>
+      </SideNavGroup>
+
+      <SideNavGroup
+        :side-nav-expanded="sideNavExpanded"
+        :active="
+          [
+            'Dashboard/Unit/Index',
+          ].includes($page.component)
+        "
+      >
+        <template v-slot:icon>
+          <ReportIcon
+            class="shrink-0"
+            @click="clickOnIcon"
+            @dblclick="toggleSideNav"
+          />
+        </template>
+        <template v-slot:name> Unit Management </template>
+        <template v-slot:navLinks>
+          <NavLink
+            :href="route('units.index')"
+            :active="$page.component === 'Dashboard/Unit/Index'"
+          >
+            Unit List</NavLink
+          >
+          <NavLink
+            :href="route('units.create')"
+            :active="$page.url == '/units/create'"
+          >
+            Create New Unit
           </NavLink>
         </template>
       </SideNavGroup>

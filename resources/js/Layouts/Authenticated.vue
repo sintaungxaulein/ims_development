@@ -5,7 +5,7 @@
       <div class="flex-1">
         <HeaderNav @toggleSideNav="toggleSideNav" />
         <main
-          class="p-4 transition-all duration-700 bg-red-50 h-5/6"
+          class="p-4 transition-all duration-700 bg-blue-50 h-5/6"
           :class="{
             'max-w-[calc(100vw-16rem)]': sideNavExpanded,
             'max-w-[calc(100vw-3rem)]': !sideNavExpanded,

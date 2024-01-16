@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Exceptions\CustomException;
-use App\Models\Item;
+use App\Models\Unit;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -13,11 +13,11 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Spatie\Permission\Models\Role;
 
-class ItemService
+class UnitService
 {
-    public function model(): Item
+    public function model(): Unit
     {
-        return new Item();
+        return new Unit();
     }
 
     public function paginate(?int $perPage = 15): LengthAwarePaginator
@@ -28,26 +28,29 @@ class ItemService
             ->withQueryString();
     }
 
-    public function storeItem($request)
-    {
-        try {
-            DB::beginTransaction();
-            $item = $this->createItem($request);
-            DB::commit();
-        } catch (\Exception $exception) {
-            DB::rollBack();
-        }
-    }
+    // public function storeUser($request)
+    // {
+    //     try {
+    //         DB::beginTransaction();
+    //         $user = $this->createUser($request);
+    //         DB::commit();
+    //     } catch (\Exception $exception) {
+    //         DB::rollBack();
+    //     }
+    // }
 
-    private function createItem($request): Item
-    {
-        $item = Item::create([
-            'item_code' => $request->item_code ?? null,
-            'name' => $request->name ?? null,
-            'unit_id' => 1,
-        ]);
-        return $item;
-    }
+    // private function createUser($request): User
+    // {
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email ?? null,
+    //         'password' => Hash::make($request->password),
+    //     ]);
+    //     $role = Role::findById($request->role_id);
+    //     $roleName = $role->name;
+    //     $user->assignRole($roleName);
+    //     return $user;
+    // }
 
     // public function updateUser(Request $request,User $user): User
     // {
